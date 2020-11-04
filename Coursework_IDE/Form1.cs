@@ -13,6 +13,8 @@ namespace Coursework_IDE
     public partial class Form1 : Form
     {
         RegisterDoctorForm regForm;
+        DoctorForm drForm;
+        Appointment[] appointments;
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +30,12 @@ namespace Coursework_IDE
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonEnter_Click(object sender, EventArgs e)
+        {
+            drForm = new DoctorForm(this,textBoxEGN.Text);
+            drForm.Show();
         }
     }
 }

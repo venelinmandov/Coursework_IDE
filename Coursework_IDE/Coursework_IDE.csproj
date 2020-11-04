@@ -47,14 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="Doctor.cs" />
+    <Compile Include="DoctorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoctorForm.Designer.cs">
+      <DependentUpon>DoctorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDoctorForm.cs">
@@ -63,6 +71,9 @@
     <Compile Include="RegisterDoctorForm.Designer.cs">
       <DependentUpon>RegisterDoctorForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DoctorForm.resx">
+      <DependentUpon>DoctorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

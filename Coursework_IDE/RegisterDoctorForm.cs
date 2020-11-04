@@ -15,6 +15,7 @@ namespace Coursework_IDE
     {
         Form1 mainForm;
         ConnectionManager connManager = new ConnectionManager();
+        DoctorForm DoctorForm;
         public RegisterDoctorForm(Form1 mf)
         {
             InitializeComponent();
@@ -51,9 +52,12 @@ namespace Coursework_IDE
             doctor.egn = textBoxEGN.Text;
             doctor.spec = textBoxSpec.Text;
             doctor.sex = (radioButtonMale.Checked ? radioButtonMale : radioButtonFemale).Text;
-
-
             connManager.RegisterDoctor(doctor);
+            mainForm.Show();
+            this.Dispose();
+
+
+
         }
     }
 }

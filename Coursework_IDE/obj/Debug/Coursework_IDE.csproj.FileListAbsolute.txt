@@ -9,3 +9,4 @@ D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.csproj.GenerateR
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.csproj.CoreCompileInputs.cache
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.exe
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.pdb
+D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.DoctorForm.resources

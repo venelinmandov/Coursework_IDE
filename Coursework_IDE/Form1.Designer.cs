@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxEGN = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonEnter = new System.Windows.Forms.Button();
             this.buttonRegister = new System.Windows.Forms.Button();
@@ -46,12 +46,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Doctor Administration System";
             // 
-            // textBox1
+            // textBoxEGN
             // 
-            this.textBox1.Location = new System.Drawing.Point(30, 210);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxEGN.Location = new System.Drawing.Point(30, 210);
+            this.textBoxEGN.Name = "textBoxEGN";
+            this.textBoxEGN.Size = new System.Drawing.Size(200, 20);
+            this.textBoxEGN.TabIndex = 1;
             // 
             // label2
             // 
@@ -71,6 +71,7 @@
             this.buttonEnter.TabIndex = 3;
             this.buttonEnter.Text = "Enter";
             this.buttonEnter.UseVisualStyleBackColor = true;
+            this.buttonEnter.Click += new System.EventHandler(this.buttonEnter_Click);
             // 
             // buttonRegister
             // 
@@ -90,7 +91,7 @@
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.buttonEnter);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxEGN);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -103,7 +104,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxEGN;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonEnter;
         private System.Windows.Forms.Button buttonRegister;
