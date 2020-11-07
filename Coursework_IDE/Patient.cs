@@ -17,7 +17,7 @@ namespace Coursework_IDE
 
         public String sex { get; set; }
 
-        public String spec { get; set; }
+        public DateTime birthday { get; set; }
 
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelWellcome = new System.Windows.Forms.Label();
             this.ScheduleTable = new System.Windows.Forms.DataGridView();
             this.Hour = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,13 +64,22 @@
             // 
             // ScheduleTable
             // 
+            this.ScheduleTable.AllowUserToAddRows = false;
+            this.ScheduleTable.AllowUserToDeleteRows = false;
+            this.ScheduleTable.AllowUserToResizeColumns = false;
+            this.ScheduleTable.AllowUserToResizeRows = false;
             this.ScheduleTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ScheduleTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Hour,
             this.Lastname,
             this.EGN});
+            this.ScheduleTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.ScheduleTable.Location = new System.Drawing.Point(95, 71);
+            this.ScheduleTable.MultiSelect = false;
             this.ScheduleTable.Name = "ScheduleTable";
+            this.ScheduleTable.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ScheduleTable.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ScheduleTable.Size = new System.Drawing.Size(353, 324);
             this.ScheduleTable.TabIndex = 1;
             this.ScheduleTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -78,22 +88,25 @@
             // 
             this.Hour.HeaderText = "Hour";
             this.Hour.Name = "Hour";
+            this.Hour.ReadOnly = true;
             // 
             // Lastname
             // 
             this.Lastname.HeaderText = "Lastname";
             this.Lastname.Name = "Lastname";
+            this.Lastname.ReadOnly = true;
             // 
             // EGN
             // 
             this.EGN.HeaderText = "EGN";
             this.EGN.Name = "EGN";
+            this.EGN.ReadOnly = true;
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(63, 452);
+            this.dateTimePicker.Location = new System.Drawing.Point(95, 428);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(240, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(268, 20);
             this.dateTimePicker.TabIndex = 2;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -225,7 +238,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelWellcome);
             this.Name = "DoctorForm";
-            this.Text = "fgfd";
+            this.Text = "Dashboard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoctorForm_FormClosing);
             this.Load += new System.EventHandler(this.DoctorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleTable)).EndInit();
             this.panel1.ResumeLayout(false);

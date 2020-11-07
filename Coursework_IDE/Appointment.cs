@@ -12,6 +12,8 @@ namespace Coursework_IDE
         public int patientId { get; set; }
         public int doctorId { get; set; }
 
+        public string diagnosis
+
         public DateTime date { get; set; }
     }
 }

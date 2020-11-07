@@ -10,3 +10,4 @@ D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.csproj.CoreCompi
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.exe
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.pdb
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.DoctorForm.resources
+D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.NewPatientForm.resources

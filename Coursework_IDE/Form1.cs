@@ -24,7 +24,7 @@ namespace Coursework_IDE
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             regForm = new RegisterDoctorForm(this);
-            regForm.Show();
+            regForm.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)
