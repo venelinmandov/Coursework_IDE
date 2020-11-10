@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Coursework_IDE
 {
-    public class Appointment
+    class Medicine
     {
         public int id { get; set; }
-        public int patientId { get; set; }
-        public int doctorId { get; set; }
+        public string name { get; set; }
 
-        public string diagnosis;
-
-        public DateTime date { get; set; }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

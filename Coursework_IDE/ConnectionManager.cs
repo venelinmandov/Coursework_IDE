@@ -10,17 +10,17 @@ namespace Coursework_IDE
 {
     class ConnectionManager
     {
-        String connStr;
+        string connStr;
         public ConnectionManager()
         {
             connStr = ConfigurationManager.ConnectionStrings["DoctorDB"].ConnectionString;
         }
 
 
-         //Doctor
+        //Doctor
         public void RegisterDoctor(Doctor doctor)
         {
-            String query = @"INSERT INTO doctors (first_name, middle_name, last_name, egn, sex, spec)
+            string query = @"INSERT INTO doctors (first_name, middle_name, last_name, egn, sex, spec)
                             VALUES(@FName, @MName, @LName, @EGN, @SEX, @Spec)";
 
 
@@ -40,10 +40,12 @@ namespace Coursework_IDE
             }
         }
 
-        public Doctor GetDoctor(String EGN)
+
+
+        public Doctor GetDoctor(string EGN)
         {
             Doctor doctor = new Doctor();
-            String query = "SELECT * from doctors where egn = @egn";
+            string query = "SELECT * from doctors where egn = @egn";
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -52,7 +54,7 @@ namespace Coursework_IDE
                 SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
 
-                
+
 
                 doctor.id = reader.GetInt32(0);
                 doctor.firstName = reader.GetString(1);
@@ -70,10 +72,10 @@ namespace Coursework_IDE
 
         public void RegisterPatient(Patient patient)
         {
-            String query = @"INSERT INTO patients (first_name, middle_name, last_name, egn, sex, birthday)
+            string query = @"INSERT INTO patients (first_name, middle_name, last_name, egn, sex, birthday)
                             VALUES (@FName, @MName, @LName, @egn, @sex, @birthday)";
 
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@FName", patient.firstName);
@@ -88,9 +90,39 @@ namespace Coursework_IDE
             }
         }
 
+        public List<Patient> GetPatients()
+        {
+            string query = "SELECT * FROM patients";
+
+            List<Patient> patients = new List<Patient>();
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    patients.Add(new Patient());
+                    patients[patients.Count - 1].id = reader.GetInt32(0);
+                    patients[patients.Count - 1].firstName = reader.GetString(1);
+                    patients[patients.Count - 1].middleName = reader.GetString(2);
+                    patients[patients.Count - 1].lastName = reader.GetString(3);
+                    patients[patients.Count - 1].egn = reader.GetString(4);
+                    patients[patients.Count - 1].sex = reader.GetString(5);
+                    patients[patients.Count - 1].birthday = reader.GetDateTime(6);
+
+                }
+
+            }
+            return patients;
+        }
+
+
         public Patient GetPatient(int id)
         {
-            String query = @"SELECT * FROM patients
+            string query = @"SELECT * FROM patients
                             WHERE patient_id = @id";
 
             Patient patient = new Patient();
@@ -114,20 +146,38 @@ namespace Coursework_IDE
             }
             return patient;
 
-     
+
         }
 
 
         //Appointment
+
+        public void NewApointment(Appointment appointment)
+        {
+            string query = @"INSERT INTO appointments (patient_id, doctor_id, date)
+                    VALUES (@pID, @dID, @Date)";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pID", appointment.patientId);
+                cmd.Parameters.AddWithValue("@dID", appointment.doctorId);
+                cmd.Parameters.AddWithValue("@Date", appointment.date);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Appointment> GetAppointments(DateTime date, int doctorID)
         {
-            String query = @"SELECT * FROM appointments
+            string query = @"SELECT * FROM appointments
                             WHERE doctor_id = @docId AND CAST (date AS DATE) = @date";
             List<Appointment> appointments = new List<Appointment>();
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@docId", doctorID);
                 cmd.Parameters.AddWithValue("@date", date.Date);
@@ -140,15 +190,128 @@ namespace Coursework_IDE
                     appointments[appointments.Count - 1].patientId = reader.GetInt32(1);
                     appointments[appointments.Count - 1].doctorId = reader.GetInt32(2);
                     appointments[appointments.Count - 1].date = reader.GetDateTime(3);
+                    if (!reader.IsDBNull(4))
+                        appointments[appointments.Count - 1].diagnosis = reader.GetString(4);
+                    else
+                        appointments[appointments.Count - 1].diagnosis = null;
                 }
-
-
-
             }
+
+
 
             return appointments;
         }
 
+        public void ChangeAppointment(Appointment appointment)
+        {
+            string query = @"UPDATE appointments SET patient_Id = @pID, diagnosis = @diag
+                           WHERE appointment_id = @aID";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@pID", appointment.patientId);
+                cmd.Parameters.AddWithValue("@aID", appointment.id);
+                if(appointment.diagnosis == null)
+                    cmd.Parameters.AddWithValue("@diag", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@diag", appointment.diagnosis);
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        //Medicine
+
+        public List<Medicine> GetMedication()
+        {
+            string query = "SELECT * FROM medicines";
+            List<Medicine> medicines = new List<Medicine>();
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    medicines.Add(new Medicine());
+
+                    medicines[medicines.Count - 1].id = reader.GetInt32(0);
+                    medicines[medicines.Count - 1].name = reader.GetString(1);
+                }
+            }
+
+            return medicines;
+            
+        }
+
+        public List<Medicine> GetMedicationByAppointment(int AppId)
+        {
+            string query = @"SELECT appointment_medicine.medicine_id, medicines.name FROM appointment_medicine
+                            LEFT JOIN medicines ON medicines.medicine_id = appointment_medicine.medicine_id
+                            WHERE appointment_medicine.appointment_id = @aID";
+            List<Medicine> medicines = new List<Medicine>();
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@aID", AppId);
+
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    medicines.Add(new Medicine());
+
+                    medicines[medicines.Count - 1].id = reader.GetInt32(0);
+                    medicines[medicines.Count - 1].name = reader.GetString(1);
+                }
+            }
+
+            return medicines;
+
+        }
+
+        //Appointment-Medicine
+
+        public void AddMedicine(Appointment appointment, Medicine medicine)
+        {
+            string query = @"INSERT INTO appointment_medicine (medicine_id, appointment_id)
+                            VALUES (@mID, @aID)";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@mID", medicine.id);
+                cmd.Parameters.AddWithValue("@aID", appointment.id);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void RemoveMedicine(Appointment appointment, Medicine medicine)
+        {
+            string query = @"DELETE FROM appointment_medicine
+                            WHERE medicine_id = @mID AND appointment_id = @aID";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@mID", medicine.id);
+                cmd.Parameters.AddWithValue("@aID", appointment.id);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }

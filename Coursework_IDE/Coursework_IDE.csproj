@@ -49,6 +49,12 @@
   <ItemGroup>
     <Compile Include="Appointment.cs" />
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="CreateAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateAppointmentForm.Designer.cs">
+      <DependentUpon>CreateAppointmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Doctor.cs" />
     <Compile Include="DoctorForm.cs">
       <SubType>Form</SubType>
@@ -68,6 +74,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medicine.cs" />
     <Compile Include="NewPatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +90,9 @@
     <Compile Include="RegisterDoctorForm.Designer.cs">
       <DependentUpon>RegisterDoctorForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CreateAppointmentForm.resx">
+      <DependentUpon>CreateAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DoctorForm.resx">
       <DependentUpon>DoctorForm.cs</DependentUpon>
     </EmbeddedResource>

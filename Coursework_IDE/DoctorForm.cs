@@ -59,7 +59,26 @@ namespace Coursework_IDE
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            List<Appointment> appointments = connMgr.GetAppointments(dateTimePicker.Value, doctor.id);
+
+            for (int i = 0; i < appointments.Count; i++)
+            {
+                if (appointments[i].date.Hour == ScheduleTable.CurrentCell.RowIndex + 8)
+                {
+                    EditAppointmentForm editAppointmentForm = new EditAppointmentForm(appointments[i]);
+                    editAppointmentForm.ShowDialog();
+                    UpdateSchedule();
+                    return;
+                }
+            }
+            DateTime dateTime = dateTimePicker.Value;
             
+            dateTime = dateTime.AddHours(ScheduleTable.CurrentCell.RowIndex + 8);
+            CreateAppointmentForm createAppointmentForm = new CreateAppointmentForm(dateTime, doctor);
+            createAppointmentForm.ShowDialog();
+            UpdateSchedule();
+
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

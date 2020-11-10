@@ -19,5 +19,10 @@ namespace Coursework_IDE
 
         public DateTime birthday { get; set; }
 
+        public override string ToString()
+        {
+            return $"{firstName} {lastName} {egn}";
+        }
+
     }
 }
