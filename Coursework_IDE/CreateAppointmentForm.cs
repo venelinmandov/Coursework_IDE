@@ -41,17 +41,32 @@ namespace Coursework_IDE
         {
             NewPatientForm newPatientForm = new NewPatientForm();
             newPatientForm.ShowDialog();
+            UpdatePatients();
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            Appointment appointment = new Appointment();
-            appointment.patientId = patients[comboBoxPatient.SelectedIndex].id;
-            appointment.doctorId = doctor.id;
-            appointment.date = date;
+            if (comboBoxPatient.Text != "")
+            {
+                Appointment appointment = new Appointment();
+                appointment.patientId = patients[comboBoxPatient.SelectedIndex].id;
+                appointment.doctorId = doctor.id;
+                appointment.date = date;
 
-            connectionManager.NewApointment(appointment);
-            this.Dispose();
+                connectionManager.NewApointment(appointment);
+                this.Dispose();
+            }
+            
+        }
+
+        private void buttonInfo_Click(object sender, EventArgs e)
+        {
+            if (comboBoxPatient.Text != "")
+            {
+                PatientInfoForm patientInfoForm = new PatientInfoForm(patients[comboBoxPatient.SelectedIndex]);
+                patientInfoForm.ShowDialog();
+            }
+           
         }
     }
 }

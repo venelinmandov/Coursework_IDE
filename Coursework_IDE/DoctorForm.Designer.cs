@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelWellcome = new System.Windows.Forms.Label();
             this.ScheduleTable = new System.Windows.Forms.DataGridView();
             this.Hour = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,6 +37,7 @@
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,8 +69,8 @@
             this.ScheduleTable.MultiSelect = false;
             this.ScheduleTable.Name = "ScheduleTable";
             this.ScheduleTable.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ScheduleTable.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ScheduleTable.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.ScheduleTable.Size = new System.Drawing.Size(344, 324);
             this.ScheduleTable.TabIndex = 1;
             this.ScheduleTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -103,6 +104,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonExport);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.ScheduleTable);
             this.panel1.Controls.Add(this.dateTimePicker);
@@ -121,15 +123,26 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "Schedule";
             // 
+            // buttonExport
+            // 
+            this.buttonExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonExport.Location = new System.Drawing.Point(16, 448);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(141, 23);
+            this.buttonExport.TabIndex = 22;
+            this.buttonExport.Text = "Export to Excell";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            // 
             // DoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 663);
+            this.ClientSize = new System.Drawing.Size(515, 663);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelWellcome);
             this.Name = "DoctorForm";
-            this.Text = "Dashboard";
+            this.Text = "Schedule";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoctorForm_FormClosing);
             this.Load += new System.EventHandler(this.DoctorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleTable)).EndInit();
@@ -150,5 +163,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonExport;
     }
 }

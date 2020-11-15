@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace Coursework_IDE
 {
@@ -16,12 +18,12 @@ namespace Coursework_IDE
         ConnectionManager connMgr = new ConnectionManager();
         
         Form1 mainForm;
-        public DoctorForm(Form1 mf, String egn)
+        public DoctorForm(Form1 mf, Doctor d)
         {
             InitializeComponent();
             mainForm = mf;
             mf.Hide();
-            doctor = connMgr.GetDoctor(egn); 
+            doctor = d;
             labelWellcome.Text += doctor.lastName;
             UpdateSchedule();
 
@@ -94,6 +96,35 @@ namespace Coursework_IDE
         private void DoctorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             mainForm.Show();
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            var excelApp = new Excel.Application();
+            excelApp.Visible = true;
+            excelApp.Workbooks.Add();
+            Excel._Worksheet worksheet = (Excel.Worksheet) excelApp.ActiveSheet;
+            
+            worksheet.Cells[2, "B"] = "Schedule of " + doctor.firstName + " " + doctor.lastName;
+            worksheet.Cells[4, "C"] = "Time";
+            worksheet.Cells[4, "D"] = "Lastname";
+            worksheet.Cells[4, "E"] = "EGN";
+            int i;
+            for (i = 0; i < ScheduleTable.Rows.Count; i++)
+            {
+                worksheet.Cells[i+5, "C"] = ScheduleTable.Rows[i].Cells[0].Value;
+                worksheet.Cells[i+5, "D"] = ScheduleTable.Rows[i].Cells[1].Value;
+                worksheet.Cells[i+5, "E"] = ScheduleTable.Rows[i].Cells[2].Value;
+            }
+            worksheet.Range["C4", "E4"].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+            worksheet.Range["C4", "E4"].Borders.Weight = Excel.XlBorderWeight.xlMedium;
+            worksheet.Range["C4", "E4"].Font.Bold = true;
+            worksheet.Range["C5", "E" + (i+4)].Borders.Weight = Excel.XlLineStyle.xlContinuous;
+            worksheet.Range["C5", "E" + (i+4)].Borders.Weight = Excel.XlBorderWeight.xlThin;
+            worksheet.Cells[i+6, "B"] = "Date: " + dateTimePicker.Value.ToString("dd/MM/yyyy");
+            worksheet.Columns[3].AutoFit();
+            worksheet.Columns[4].AutoFit();
+            worksheet.Columns[5].AutoFit();
         }
     }
 }

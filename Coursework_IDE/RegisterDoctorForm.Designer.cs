@@ -201,7 +201,7 @@
             this.Controls.Add(this.textBoxMName);
             this.Controls.Add(this.textBoxFName);
             this.Name = "RegisterDoctorForm";
-            this.Text = "RegisterDoctorForm";
+            this.Text = "Register Doctor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterDoctorForm_FormClosing);
             this.Load += new System.EventHandler(this.RegisterDoctorForm_Load);
             this.groupBoxGender.ResumeLayout(false);

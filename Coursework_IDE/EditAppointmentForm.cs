@@ -54,12 +54,15 @@ namespace Coursework_IDE
             comboBoxMedication.Items.Clear();
             comboBoxMedication.Items.AddRange(meds.ToArray());
 
+
         }
         void UpdateMedsList()
         {
             prescription = connectionManager.GetMedicationByAppointment(appointment.id);
             listPrescription.Items.Clear();
             listPrescription.Items.AddRange(prescription.ToArray());
+            if (listPrescription.Items.Count > 0)
+                listPrescription.SelectedIndex = 0;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -114,6 +117,18 @@ namespace Coursework_IDE
                 UpdateMedsList();
             }
             
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            connectionManager.RemoveAppointment(appointment);
+            this.Dispose();
+        }
+
+        private void buttonInfo_Click(object sender, EventArgs e)
+        {
+            PatientInfoForm patientInfoForm = new PatientInfoForm(patients[comboBoxPatient.SelectedIndex]);
+            patientInfoForm.ShowDialog();
         }
     }
 }

@@ -169,6 +169,24 @@ namespace Coursework_IDE
             }
         }
 
+        public void RemoveAppointment(Appointment appointment)
+        {
+            string[] query = { "DELETE FROM appointment_medicine WHERE appointment_id = @id",
+                                "DELETE FROM appointments WHERE appointment_id = @id" };
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd;
+                conn.Open();
+                for (int i = 0; i < 2; i++)
+                {
+                    cmd = new SqlCommand(query[i], conn);
+                    cmd.Parameters.AddWithValue("@id", appointment.id);
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
+
         public List<Appointment> GetAppointments(DateTime date, int doctorID)
         {
             string query = @"SELECT * FROM appointments
@@ -196,9 +214,35 @@ namespace Coursework_IDE
                         appointments[appointments.Count - 1].diagnosis = null;
                 }
             }
+            return appointments;
+        }
 
+        public List<Appointment> GetAppointmentsByYearMonth(DateTime date, Patient patient)
+        {
+            string query = @"SELECT appointment_id, patient_id, doctor_id, date, diagnosis FROM appointments
+                            WHERE appointments.patient_id = @pId AND MONTH(appointments.date) = @month AND YEAR(appointments.date) = @year AND diagnosis IS NOT NULL;";
+            List<Appointment> appointments = new List<Appointment>();
 
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
 
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pId", patient.id);
+                cmd.Parameters.AddWithValue("@month", date.Month);
+                cmd.Parameters.AddWithValue("@year", date.Year);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    appointments.Add(new Appointment());
+                    appointments[appointments.Count - 1].id = reader.GetInt32(0);
+                    appointments[appointments.Count - 1].patientId = reader.GetInt32(1);
+                    appointments[appointments.Count - 1].doctorId = reader.GetInt32(2);
+                    appointments[appointments.Count - 1].date = reader.GetDateTime(3);
+                    appointments[appointments.Count - 1].diagnosis = reader.GetString(4);
+
+                }
+            }
             return appointments;
         }
 

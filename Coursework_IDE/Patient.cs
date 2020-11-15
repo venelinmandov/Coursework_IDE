@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coursework_IDE
 {
-    class Patient
+    public class Patient
     {
         public int id { get; set; }
         public String firstName { get; set; }

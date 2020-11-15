@@ -65,6 +65,7 @@
             // 
             // buttonEnter
             // 
+            this.buttonEnter.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonEnter.Location = new System.Drawing.Point(29, 250);
             this.buttonEnter.Name = "buttonEnter";
             this.buttonEnter.Size = new System.Drawing.Size(200, 23);
@@ -94,7 +95,7 @@
             this.Controls.Add(this.textBoxEGN);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Doctor Administration System";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

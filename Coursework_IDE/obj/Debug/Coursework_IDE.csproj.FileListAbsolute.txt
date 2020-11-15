@@ -13,3 +13,4 @@ D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.DoctorForm.resou
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.NewPatientForm.resources
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.EditAppointmentForm.resources
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.CreateAppointmentForm.resources
+D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.PatientInfoForm.resources

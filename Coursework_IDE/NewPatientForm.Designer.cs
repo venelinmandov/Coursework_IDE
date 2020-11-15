@@ -199,7 +199,7 @@
             this.Controls.Add(this.textBoxMName);
             this.Controls.Add(this.textBoxFName);
             this.Name = "NewPatientForm";
-            this.Text = "NewPatientForm";
+            this.Text = "New Patient";
             this.groupBoxGender.ResumeLayout(false);
             this.groupBoxGender.PerformLayout();
             this.ResumeLayout(false);

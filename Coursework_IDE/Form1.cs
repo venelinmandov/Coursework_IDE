@@ -14,7 +14,6 @@ namespace Coursework_IDE
     {
         RegisterDoctorForm regForm;
         DoctorForm drForm;
-        Appointment[] appointments;
         public Form1()
         {
             InitializeComponent();
@@ -34,8 +33,24 @@ namespace Coursework_IDE
 
         private void buttonEnter_Click(object sender, EventArgs e)
         {
-            drForm = new DoctorForm(this,textBoxEGN.Text);
-            drForm.Show();
+            
+            ConnectionManager connectionManager = new ConnectionManager();
+            try
+            {
+                Doctor doctor;
+                doctor = connectionManager.GetDoctor(textBoxEGN.Text);
+                drForm = new DoctorForm(this, doctor);
+                drForm.Show();
+
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("There is no doctor with that EGN!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            
+
         }
     }
 }

@@ -157,6 +157,7 @@
             this.buttonDelete.TabIndex = 38;
             this.buttonDelete.Text = "Remove appointment";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // listPrescription
             // 
@@ -195,6 +196,7 @@
             this.buttonInfo.TabIndex = 42;
             this.buttonInfo.Text = "Info";
             this.buttonInfo.UseVisualStyleBackColor = true;
+            this.buttonInfo.Click += new System.EventHandler(this.buttonInfo_Click);
             // 
             // EditAppointmentForm
             // 
@@ -217,7 +219,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelTitle);
             this.Name = "EditAppointmentForm";
-            this.Text = "EditAppointmentForm";
+            this.Text = "Edit Appointment";
             this.Load += new System.EventHandler(this.EditAppointmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Word = Microsoft.Office.Interop.Word;
+namespace Coursework_IDE
+{
+    public partial class PatientInfoForm : Form
+    {
+        Patient patient;
+        public PatientInfoForm(Patient p)
+        {
+            InitializeComponent();
+            patient = p;
+            labelFM.Text = patient.firstName;
+            labelMN.Text = patient.middleName;
+            labelLN.Text = patient.lastName;
+            labelEGN.Text = patient.egn;
+            labelGender.Text = patient.sex;
+            labelBirthday.Text = patient.birthday.Date.ToString("dd/MM/yyyy");
+
+        }
+
+        private void PatientInfoForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            ConnectionManager connectionManager = new ConnectionManager();
+            var wordApp = new Word.Application();
+            wordApp.Visible = true;
+            wordApp.Documents.Add();
+            Word.Document doc = wordApp.ActiveDocument;
+            object missing = System.Reflection.Missing.Value;
+            List<Appointment> appointments = connectionManager.GetAppointmentsByYearMonth(DateTime.Now, patient);
+
+            Word.Paragraph par = doc.Content.Paragraphs.Add(ref missing);
+            par.Range.Text = "Information for patient No " + patient.id;
+            par.Range.Font.Size = 26;
+            par.Range.Font.Name = "Bahnschrift";
+            par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            par.Range.InsertParagraphAfter();
+
+            string[,] data = new string[,]
+                {
+                    {"Firstname",labelFM.Text },
+                    {"Middlename ",labelMN.Text },
+                    {"Last Name", labelLN.Text },
+                    {"EGN",labelEGN.Text },
+                    {"Gender",labelGender.Text },
+                    {"Birthday",labelBirthday.Text }
+                };
+
+
+            
+            for (int i = 0; i < data.GetLength(0); i++)
+            {
+                
+                par.Range.Font.Size = 14;
+
+
+                par.Range.Text = data[i, 0] + ": " + data[i, 1];
+                
+                par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+                par.Range.InsertParagraphAfter();
+
+            }
+            par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            par.Range.Text = "Diagnoses this month:";
+            par.Range.InsertParagraphAfter();
+            par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            if (appointments.Count == 0)
+                par.Range.Text = "Patient did not have any diagnoses this month.";
+            else
+            {
+                for (int i = 0; i < appointments.Count; i++)
+                {
+                    par.Range.Text = "In " + appointments[i].date.ToString("dd/MM/yyyy") + "patient has " + appointments[i].diagnosis + " diagnosis.";
+                    par.Range.InsertParagraphAfter();
+                }
+            }
+
+
+
+
+        }
+    }
+}

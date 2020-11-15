@@ -33,6 +33,7 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.labelPatient = new System.Windows.Forms.Label();
+            this.buttonInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -56,7 +57,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(290, 173);
+            this.buttonAdd.Location = new System.Drawing.Point(290, 171);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 3;
@@ -84,18 +85,29 @@
             this.labelPatient.TabIndex = 31;
             this.labelPatient.Text = "Patient";
             // 
+            // buttonInfo
+            // 
+            this.buttonInfo.Location = new System.Drawing.Point(371, 171);
+            this.buttonInfo.Name = "buttonInfo";
+            this.buttonInfo.Size = new System.Drawing.Size(75, 23);
+            this.buttonInfo.TabIndex = 32;
+            this.buttonInfo.Text = "Info";
+            this.buttonInfo.UseVisualStyleBackColor = true;
+            this.buttonInfo.Click += new System.EventHandler(this.buttonInfo_Click);
+            // 
             // CreateAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 320);
+            this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.labelPatient);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.comboBoxPatient);
             this.Controls.Add(this.labelTitle);
             this.Name = "CreateAppointmentForm";
-            this.Text = "CreateAppointmentForm";
+            this.Text = "Create Appointment";
             this.Load += new System.EventHandler(this.CreateAppointmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -109,5 +121,6 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Label labelPatient;
+        private System.Windows.Forms.Button buttonInfo;
     }
 }
