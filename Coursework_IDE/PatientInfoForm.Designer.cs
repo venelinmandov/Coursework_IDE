@@ -212,7 +212,6 @@
             this.Controls.Add(this.labelFNTitle);
             this.Name = "PatientInfoForm";
             this.Text = "Patient Info";
-            this.Load += new System.EventHandler(this.PatientInfoForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

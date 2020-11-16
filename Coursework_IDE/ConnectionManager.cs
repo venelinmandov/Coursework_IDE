@@ -217,10 +217,10 @@ namespace Coursework_IDE
             return appointments;
         }
 
-        public List<Appointment> GetAppointmentsByYearMonth(DateTime date, Patient patient)
+        public List<Appointment> GetAppointementsInLast30Days(Patient patient)
         {
             string query = @"SELECT appointment_id, patient_id, doctor_id, date, diagnosis FROM appointments
-                            WHERE appointments.patient_id = @pId AND MONTH(appointments.date) = @month AND YEAR(appointments.date) = @year AND diagnosis IS NOT NULL;";
+                             WHERE DATEDIFF(day, appointments.date,GETDATE()) BETWEEN 0 AND 30 AND appointments.patient_id = @pId AND diagnosis IS NOT NULL;";
             List<Appointment> appointments = new List<Appointment>();
 
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -228,8 +228,7 @@ namespace Coursework_IDE
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@pId", patient.id);
-                cmd.Parameters.AddWithValue("@month", date.Month);
-                cmd.Parameters.AddWithValue("@year", date.Year);
+
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

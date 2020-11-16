@@ -26,10 +26,6 @@ namespace Coursework_IDE
 
         }
 
-        private void PatientInfoForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
@@ -39,7 +35,7 @@ namespace Coursework_IDE
             wordApp.Documents.Add();
             Word.Document doc = wordApp.ActiveDocument;
             object missing = System.Reflection.Missing.Value;
-            List<Appointment> appointments = connectionManager.GetAppointmentsByYearMonth(DateTime.Now, patient);
+            List<Appointment> appointments = connectionManager.GetAppointementsInLast30Days(patient);
 
             Word.Paragraph par = doc.Content.Paragraphs.Add(ref missing);
             par.Range.Text = "Information for patient No " + patient.id;
@@ -51,7 +47,7 @@ namespace Coursework_IDE
             string[,] data = new string[,]
                 {
                     {"Firstname",labelFM.Text },
-                    {"Middlename ",labelMN.Text },
+                    {"Middlename",labelMN.Text },
                     {"Last Name", labelLN.Text },
                     {"EGN",labelEGN.Text },
                     {"Gender",labelGender.Text },
@@ -64,32 +60,34 @@ namespace Coursework_IDE
             {
                 
                 par.Range.Font.Size = 14;
-
-
-                par.Range.Text = data[i, 0] + ": " + data[i, 1];
-                
+                par.Range.Text = data[i, 0] + ": " + data[i, 1];       
                 par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
                 par.Range.InsertParagraphAfter();
 
             }
             par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            par.Range.Text = "Diagnoses this month:";
+            par.Range.Font.Size = 20;
+            par.Range.Text = "Diagnoses in last 30 days:";
             par.Range.InsertParagraphAfter();
             par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            par.Range.Font.Size = 12;
             if (appointments.Count == 0)
-                par.Range.Text = "Patient did not have any diagnoses this month.";
+                par.Range.Text = "Patient did not have any diagnoses in last 30 days.";
             else
             {
                 for (int i = 0; i < appointments.Count; i++)
                 {
-                    par.Range.Text = "In " + appointments[i].date.ToString("dd/MM/yyyy") + "patient has " + appointments[i].diagnosis + " diagnosis.";
+                    par.Range.Text = "In " + appointments[i].date.ToString("dd/MM/yyyy") + " patient has " + appointments[i].diagnosis + " diagnosis.";
                     par.Range.InsertParagraphAfter();
                 }
             }
 
+            foreach (Word.Section section in doc.Sections)
+            {
+                Word.Range footer = section.Footers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                footer.Text = DateTime.Now.ToString();
 
-
-
+            }
         }
     }
 }

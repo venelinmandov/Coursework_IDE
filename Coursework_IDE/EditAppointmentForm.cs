@@ -65,15 +65,7 @@ namespace Coursework_IDE
                 listPrescription.SelectedIndex = 0;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void EditAppointmentForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void ButtonAddPatient_Click(object sender, EventArgs e)
         {

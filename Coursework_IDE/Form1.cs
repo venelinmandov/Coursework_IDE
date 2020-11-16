@@ -26,11 +26,6 @@ namespace Coursework_IDE
             regForm.ShowDialog();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonEnter_Click(object sender, EventArgs e)
         {
             
@@ -47,10 +42,6 @@ namespace Coursework_IDE
             {
                 MessageBox.Show("There is no doctor with that EGN!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-            
-
         }
     }
 }

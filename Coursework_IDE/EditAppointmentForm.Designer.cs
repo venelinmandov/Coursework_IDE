@@ -176,7 +176,6 @@
             this.label3.Size = new System.Drawing.Size(132, 25);
             this.label3.TabIndex = 40;
             this.label3.Text = "Prescription:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // buttonRemoveMedication
             // 
@@ -220,7 +219,6 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "EditAppointmentForm";
             this.Text = "Edit Appointment";
-            this.Load += new System.EventHandler(this.EditAppointmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

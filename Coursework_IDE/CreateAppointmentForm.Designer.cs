@@ -108,7 +108,6 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "CreateAppointmentForm";
             this.Text = "Create Appointment";
-            this.Load += new System.EventHandler(this.CreateAppointmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

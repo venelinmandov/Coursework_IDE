@@ -144,7 +144,6 @@
             this.Name = "DoctorForm";
             this.Text = "Schedule";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoctorForm_FormClosing);
-            this.Load += new System.EventHandler(this.DoctorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

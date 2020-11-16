@@ -32,11 +32,6 @@ namespace Coursework_IDE
             comboBoxPatient.Items.AddRange(patients.ToArray());
         }
 
-        private void CreateAppointmentForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             NewPatientForm newPatientForm = new NewPatientForm();

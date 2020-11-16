@@ -102,7 +102,6 @@
             this.radioButtonFemale.TabStop = true;
             this.radioButtonFemale.Text = "Female";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
-            this.radioButtonFemale.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // groupBoxGender
             // 
@@ -123,7 +122,6 @@
             this.labelFName.Size = new System.Drawing.Size(52, 13);
             this.labelFName.TabIndex = 8;
             this.labelFName.Text = "Firstname";
-            this.labelFName.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelMName
             // 
@@ -203,7 +201,6 @@
             this.Name = "RegisterDoctorForm";
             this.Text = "Register Doctor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterDoctorForm_FormClosing);
-            this.Load += new System.EventHandler(this.RegisterDoctorForm_Load);
             this.groupBoxGender.ResumeLayout(false);
             this.groupBoxGender.PerformLayout();
             this.ResumeLayout(false);

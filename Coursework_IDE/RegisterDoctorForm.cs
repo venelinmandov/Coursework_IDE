@@ -59,21 +59,6 @@ namespace Coursework_IDE
 
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RegisterDoctorForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void RegisterDoctorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             mainForm.Show();

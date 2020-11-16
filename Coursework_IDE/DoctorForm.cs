@@ -26,8 +26,6 @@ namespace Coursework_IDE
             doctor = d;
             labelWellcome.Text += doctor.lastName;
             UpdateSchedule();
-
-
         }
 
         private void UpdateSchedule()
@@ -88,11 +86,6 @@ namespace Coursework_IDE
             UpdateSchedule();
         }
 
-        private void DoctorForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void DoctorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             mainForm.Show();
@@ -105,7 +98,7 @@ namespace Coursework_IDE
             excelApp.Workbooks.Add();
             Excel._Worksheet worksheet = (Excel.Worksheet) excelApp.ActiveSheet;
             
-            worksheet.Cells[2, "B"] = "Schedule of " + doctor.firstName + " " + doctor.lastName;
+            worksheet.Cells[2, "B"] = "Schedule of Dr. " + doctor.firstName + " " + doctor.lastName;
             worksheet.Cells[4, "C"] = "Time";
             worksheet.Cells[4, "D"] = "Lastname";
             worksheet.Cells[4, "E"] = "EGN";
