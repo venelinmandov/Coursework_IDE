@@ -270,7 +270,7 @@ namespace Coursework_IDE
 
         public List<Medicine> GetMedication()
         {
-            string query = "SELECT * FROM medicines";
+            string query = "SELECT * FROM medicines order by name";
             List<Medicine> medicines = new List<Medicine>();
 
             using (SqlConnection conn = new SqlConnection(connStr))

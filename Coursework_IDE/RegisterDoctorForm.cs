@@ -13,9 +13,10 @@ namespace Coursework_IDE
 {
     public partial class RegisterDoctorForm : Form
     {
-        Form1 mainForm;
+        Form1 mainForm; //Pazi referenciq kum purvata forma 
         ConnectionManager connManager = new ConnectionManager();
-        DoctorForm DoctorForm;
+
+        //Constructor
         public RegisterDoctorForm(Form1 mf)
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace Coursework_IDE
             mf.Hide();
         }
 
+        //Validacia na vyvedenite danni
         void ValidateData()
         {
             String error = "";
@@ -61,9 +63,11 @@ namespace Coursework_IDE
 
         private void RegisterDoctorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mainForm.Show();
+            mainForm.Show(); //Pokazvane na pyrvata forma
         }
 
+        //Ako validaciqta e uspeshna suzdava nov zapis za lekar.
+        //V protiven sluchai izvejda validacionnite greshki.
         private void buttonRegister_Click(object sender, EventArgs e)
         {
 

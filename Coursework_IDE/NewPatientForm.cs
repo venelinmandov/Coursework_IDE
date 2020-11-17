@@ -20,6 +20,7 @@ namespace Coursework_IDE
             InitializeComponent();
         }
 
+        //Validaciq na vyvedenite danni
         void ValidateData()
         {
             String error = "";
@@ -52,6 +53,8 @@ namespace Coursework_IDE
         }
       
 
+        //Ako dannite sa validirani uspeshno se suzdava nov zapis v bazata danni za lekar.
+        //V protiven sluchai izvejda validacionni greshki s MessageBox.
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             try

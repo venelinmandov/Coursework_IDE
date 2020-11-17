@@ -12,23 +12,26 @@ namespace Coursework_IDE
 {
     public partial class Form1 : Form
     {
-        RegisterDoctorForm regForm;
-        DoctorForm drForm;
+        RegisterDoctorForm regForm; //Registracionna forma za lekar
+        DoctorForm drForm; //Forma s grafika na lekarq
         public Form1()
         {
             InitializeComponent();
             
         }
 
+        //Otvarqne na registacionna forma
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             regForm = new RegisterDoctorForm(this);
             regForm.ShowDialog();
         }
 
+        //Otvarqne na forma s grafika na lekarq
         private void buttonEnter_Click(object sender, EventArgs e)
         {
-            
+            //Ako syshtestvuva lekyr s takova EGN se otvarq formata
+            //imache izvejda MessageBox e greshka
             ConnectionManager connectionManager = new ConnectionManager();
             try
             {
