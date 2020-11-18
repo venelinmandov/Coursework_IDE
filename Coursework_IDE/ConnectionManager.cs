@@ -11,13 +11,17 @@ namespace Coursework_IDE
     class ConnectionManager
     {
         string connStr;
+        //Constructor
         public ConnectionManager()
         {
+            //Izvichane na connection string ot configuracionniq fail
             connStr = ConfigurationManager.ConnectionStrings["DoctorDB"].ConnectionString;
         }
 
 
-        //Doctor
+        //DOCTOR
+
+        //Syzdavane na nov zapis za doctor
         public void RegisterDoctor(Doctor doctor)
         {
             string query = @"INSERT INTO doctors (first_name, middle_name, last_name, egn, sex, spec)
@@ -41,7 +45,7 @@ namespace Coursework_IDE
         }
 
 
-
+        //Vrushta doctor po dadeno EGN
         public Doctor GetDoctor(string EGN)
         {
             Doctor doctor = new Doctor();
@@ -67,9 +71,9 @@ namespace Coursework_IDE
             return doctor;
         }
 
-        //Patient
+        //PATIENT
 
-
+        //Suzdava nov zapis za pacient
         public void RegisterPatient(Patient patient)
         {
             string query = @"INSERT INTO patients (first_name, middle_name, last_name, egn, sex, birthday)
@@ -90,6 +94,7 @@ namespace Coursework_IDE
             }
         }
 
+        //Vrushta spisyk sys vsichki pacienti
         public List<Patient> GetPatients()
         {
             string query = "SELECT * FROM patients";
@@ -119,7 +124,7 @@ namespace Coursework_IDE
             return patients;
         }
 
-
+        //Vryshta pacient po dadeno id
         public Patient GetPatient(int id)
         {
             string query = @"SELECT * FROM patients
@@ -150,8 +155,9 @@ namespace Coursework_IDE
         }
 
 
-        //Appointment
+        //APOINTMENT
 
+        //Syzdava nov zapis za appointment
         public void NewApointment(Appointment appointment)
         {
             string query = @"INSERT INTO appointments (patient_id, doctor_id, date)
@@ -169,6 +175,7 @@ namespace Coursework_IDE
             }
         }
 
+        //Iztriva zapis za appointment
         public void RemoveAppointment(Appointment appointment)
         {
             string[] query = { "DELETE FROM appointment_medicine WHERE appointment_id = @id",
@@ -187,6 +194,7 @@ namespace Coursework_IDE
             }
         }
 
+        //Vryshta zapazeni chasove za daden doctor i data
         public List<Appointment> GetAppointments(DateTime date, int doctorID)
         {
             string query = @"SELECT * FROM appointments
@@ -217,6 +225,7 @@ namespace Coursework_IDE
             return appointments;
         }
 
+        //Vryshta zapazeni chasove za daden pacient prez poslednite 30 dena i ima diagnoza
         public List<Appointment> GetAppointementsInLast30Days(Patient patient)
         {
             string query = @"SELECT appointment_id, patient_id, doctor_id, date, diagnosis FROM appointments
@@ -245,6 +254,7 @@ namespace Coursework_IDE
             return appointments;
         }
 
+        //Promenq daden zapis za zapisan chas
         public void ChangeAppointment(Appointment appointment)
         {
             string query = @"UPDATE appointments SET patient_Id = @pID, diagnosis = @diag
@@ -268,6 +278,7 @@ namespace Coursework_IDE
 
         //Medicine
 
+        //Vryshta vsichki lekarstva v azbuchen red
         public List<Medicine> GetMedication()
         {
             string query = "SELECT * FROM medicines order by name";
@@ -293,6 +304,7 @@ namespace Coursework_IDE
             
         }
 
+        //Vryshta predpisanite lekarstva za daden zapisan chas
         public List<Medicine> GetMedicationByAppointment(int AppId)
         {
             string query = @"SELECT appointment_medicine.medicine_id, medicines.name FROM appointment_medicine
@@ -324,6 +336,7 @@ namespace Coursework_IDE
 
         //Appointment-Medicine
 
+        //Dobavq predpisano lekarstvo za daden zapisan chas
         public void AddMedicine(Appointment appointment, Medicine medicine)
         {
             string query = @"INSERT INTO appointment_medicine (medicine_id, appointment_id)
@@ -340,6 +353,7 @@ namespace Coursework_IDE
             }
         }
 
+        //Premahva predpisano lekarstvo za daden zapisan chas
         public void RemoveMedicine(Appointment appointment, Medicine medicine)
         {
             string query = @"DELETE FROM appointment_medicine
