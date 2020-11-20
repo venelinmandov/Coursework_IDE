@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelWellcome = new System.Windows.Forms.Label();
             this.ScheduleTable = new System.Windows.Forms.DataGridView();
             this.Hour = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,11 +69,11 @@
             this.ScheduleTable.MultiSelect = false;
             this.ScheduleTable.Name = "ScheduleTable";
             this.ScheduleTable.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ScheduleTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ScheduleTable.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ScheduleTable.Size = new System.Drawing.Size(344, 244);
             this.ScheduleTable.TabIndex = 1;
-            this.ScheduleTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.ScheduleTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ScheduleTable_CellClick);
             // 
             // Hour
             // 
@@ -141,6 +141,7 @@
             this.ClientSize = new System.Drawing.Size(515, 633);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelWellcome);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DoctorForm";
             this.Text = "Schedule";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoctorForm_FormClosing);

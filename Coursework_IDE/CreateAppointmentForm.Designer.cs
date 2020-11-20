@@ -106,6 +106,7 @@
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.comboBoxPatient);
             this.Controls.Add(this.labelTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateAppointmentForm";
             this.Text = "Create Appointment";
             this.ResumeLayout(false);

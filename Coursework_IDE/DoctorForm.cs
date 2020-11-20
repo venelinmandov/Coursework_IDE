@@ -56,17 +56,17 @@ namespace Coursework_IDE
                                 appointments.RemoveAt(j);
                                 break;
                             }
-                            row = new Object[] { (i + 8).ToString() + ":00", "FREE", "FREE" };
+                            row = new Object[] { (i + 8).ToString() + ":00", "", "" };
                     }
                 }
                 else
-                    row = new Object[] { (i + 8).ToString() + ":00", "FREE", "FREE" };
+                    row = new Object[] { (i + 8).ToString() + ":00", "", "" };
                 ScheduleTable.Rows.Add(row);
             }
         }
 
         //Otvarqne na forma za syzdavane/redktirane na chas
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ScheduleTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             List<Appointment> appointments = connectionManager.GetAppointments(dateTimePicker.Value, doctor.id);
 
@@ -89,8 +89,6 @@ namespace Coursework_IDE
 
             //Opresnqvane na grafika
             UpdateSchedule();
-
-
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -139,5 +137,6 @@ namespace Coursework_IDE
             worksheet.Columns[5].AutoFit();
         }
 
+        
     }
 }

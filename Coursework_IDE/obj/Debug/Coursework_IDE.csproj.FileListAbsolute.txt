@@ -1,7 +1,6 @@
 D:\repos\Coursework_IDE\Coursework_IDE\bin\Debug\Coursework_IDE.exe.config
 D:\repos\Coursework_IDE\Coursework_IDE\bin\Debug\Coursework_IDE.exe
 D:\repos\Coursework_IDE\Coursework_IDE\bin\Debug\Coursework_IDE.pdb
-D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.csprojAssemblyReference.cache
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.Form1.resources
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.Properties.Resources.resources
 D:\repos\Coursework_IDE\Coursework_IDE\obj\Debug\Coursework_IDE.RegisterDoctorForm.resources

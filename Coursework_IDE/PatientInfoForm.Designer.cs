@@ -210,6 +210,7 @@
             this.Controls.Add(this.labelLNTitle);
             this.Controls.Add(this.labelMNTitle);
             this.Controls.Add(this.labelFNTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PatientInfoForm";
             this.Text = "Patient Info";
             this.ResumeLayout(false);

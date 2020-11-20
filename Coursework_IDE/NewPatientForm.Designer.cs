@@ -198,6 +198,7 @@
             this.Controls.Add(this.textBoxLName);
             this.Controls.Add(this.textBoxMName);
             this.Controls.Add(this.textBoxFName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewPatientForm";
             this.Text = "New Patient";
             this.groupBoxGender.ResumeLayout(false);

@@ -94,8 +94,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxEGN);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Doctor Administration System";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

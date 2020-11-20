@@ -46,5 +46,10 @@ namespace Coursework_IDE
                 MessageBox.Show("There is no doctor with that EGN!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

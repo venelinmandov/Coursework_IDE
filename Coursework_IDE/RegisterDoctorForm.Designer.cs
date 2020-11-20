@@ -198,6 +198,7 @@
             this.Controls.Add(this.textBoxLName);
             this.Controls.Add(this.textBoxMName);
             this.Controls.Add(this.textBoxFName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RegisterDoctorForm";
             this.Text = "Register Doctor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterDoctorForm_FormClosing);
